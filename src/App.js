@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { v4 as uuidv4 } from "uuid";
+import Generator from "./components/generator";
+
+const generateV4 = uuidv4();
+
+const data = {
+	intro: "Generate your Unique Indentifier",
+	identifier: generateV4,
+	info: "Refresh page to generate another",
+};
+
+const mainStyles = {
+	minHeight: "100vh",
+	padding: "2rem",
+	display: "flex",
+	flexDirection: "column",
+	justifyContent: "center",
+	alignItems: "center",
+	backgroundColor: "#222",
+	heading: {
+		marginTop: 0,
+		fontSize: "4rem",
+		textAlign: "center",
+		color: "#eee",
+	},
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const { intro, identifier, info } = data;
+	return (
+		<section style={mainStyles} className="App">
+			<h1 style={mainStyles.heading}>Online UUID Generator</h1>
+			<Generator
+				key={identifier}
+				intro={intro}
+				identifier={identifier}
+				info={info}
+			/>
+		</section>
+	);
 }
 
 export default App;
